@@ -1,3 +1,4 @@
 sanic==22.6.2
 transformers
+bitsandbytes==0.35.4
 accelerate
