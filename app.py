@@ -1,5 +1,7 @@
-from transformers import GPTJForCausalLM, GPT2Tokenizer
+from transformers import GPTJConfig, GPT2Tokenizer, models
 import torch
+
+from utils import GPTJBlock, GPTJForCausalLM, add_adapters
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
@@ -9,17 +11,31 @@ def init():
     global model
     global tokenizer
 
-    print("loading to CPU...")
-    model = GPTJForCausalLM.from_pretrained("EleutherAI/gpt-j-6B", revision="float16", torch_dtype=torch.float16, low_cpu_mem_usage=True)
+    print("patching for 8bit...")
+    models.gptj.modeling_gptj.GPTJBlock = GPTJBlock  # monkey-patch GPT-J
+
+    print("loading config...")
+    config = GPTJConfig.from_pretrained("EleutherAI/gpt-j-6B")
+    model = GPTJForCausalLM(config=config)
+    
+    print("adding LoRA adapters...")
+    add_adapters(model)
+
+    print("loading model to CPU...")
+    checkpoint = torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-1k.pt')
+    model.load_state_dict(checkpoint)
+    model.eval()
     print("done")
 
     # conditionally load to GPU
     if device == "cuda:0":
-        print("loading to GPU...")
+        print("loading model to GPU...")
         model.cuda()
         print("done")
 
     tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-j-6B")
+    config.pad_token_id = config.eos_token_id
+    tokenizer.pad_token = config.pad_token_id
 
 
 # Inference is ran for every server call
