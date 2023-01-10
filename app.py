@@ -1,4 +1,4 @@
-from transformers import GPTJConfig, GPT2Tokenizer, models
+from transformers import GPTJConfig, AutoTokenizer, models, pipeline
 import torch
 
 from utils import GPTJBlock, GPTJForCausalLM, add_adapters
@@ -22,7 +22,7 @@ def init():
     add_adapters(model)
 
     print("loading model to CPU...")
-    checkpoint = torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-1k.pt')
+    checkpoint = torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-10k.pt')
     model.load_state_dict(checkpoint)
     model.eval()
     print("done")
@@ -33,7 +33,7 @@ def init():
         model.cuda()
         print("done")
 
-    tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-j-6B")
+    tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
     config.pad_token_id = config.eos_token_id
     tokenizer.pad_token = config.pad_token_id
 
