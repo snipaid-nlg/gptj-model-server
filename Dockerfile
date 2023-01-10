@@ -18,6 +18,9 @@ ADD server.py .
 ADD download.py .
 RUN python3 download.py
 
+# Add 8bit patch and lora adapter utility code
+ADD utils.py .
+
 # Add your custom app code, init() and inference()
 ADD app.py .
 
