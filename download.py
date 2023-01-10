@@ -1,21 +1,22 @@
 # In this file, we define download_model
 # It runs during container build time to get model weights built into the container
 
-# In this example: A Huggingface GPTJ model
+# In this example: our gpt-j-6B model finetuned for title and teaser generation
 
-from transformers import GPTJForCausalLM, GPT2Tokenizer
+from transformers import GPTJConfig, AutoTokenizer
 import torch
 
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
-    print("downloading model...")
-    GPTJForCausalLM.from_pretrained(
-        "EleutherAI/gpt-j-6B", revision="float16", torch_dtype=torch.float16, low_cpu_mem_usage=True
-    )
+    print("downloading model checkpoint...")
+    torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-10k.pt')
     print("done")
 
+    print("downloading model config...")
+    GPTJConfig.from_pretrained("EleutherAI/gpt-j-6B")
+
     print("downloading tokenizer...")
-    GPT2Tokenizer.from_pretrained("EleutherAI/gpt-j-6B")
+    AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
     print("done")
 
 if __name__ == "__main__":
