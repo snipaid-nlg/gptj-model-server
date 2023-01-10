@@ -45,18 +45,18 @@ def inference(model_inputs:dict) -> dict:
     global tokenizer
 
     # Parse out your arguments
-    prompt = model_inputs.get('prompt', None)
+    prompt = model_inputs.pop('prompt', None)
     if prompt == None:
         return {'message': "No prompt provided"}
     
-    # Tokenize inputs
-    input_tokens = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    # Initialize pipeline
+    gen_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0, **model_inputs)
 
-    # Run the model
-    output = model.generate(input_tokens)
+    # Run generation pipline
+    output = gen_pipe(prompt)
 
-    # Decode output tokens
-    output_text = tokenizer.batch_decode(output, skip_special_tokens = True)[0]
+    # Get output text
+    output_text = output[0]['generated_text']
 
     result = {"output": output_text}
 
