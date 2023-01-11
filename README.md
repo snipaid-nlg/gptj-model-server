@@ -25,6 +25,24 @@ if deploying using Docker:
 
 This repo provides you with a functioning http server for our finetuned gptj-title-teaser-10k model. You can use it as is, or package it up with our provided `Dockerfile` and deploy it to your favorite container hosting provider!
 
-## How to deploy:
+We are currently running this code on [Banana](https://banana.dev), where you can get 1 hour of model hosting for free. Feel free to choose a different hosting provider. In the following section we provide instructions for deployment with Banana.
 
-*Coming soon: Instructions on deployment with example provider...*
+# 🍌
+
+# To deploy to Banana Serverless:
+
+- Fork this repo
+- Log in to the [Banana App](https://app.banana.dev)
+- Select your forked repo for deploy
+
+It'll then be built from the dockerfile, optimized, then deployed on Banana Serverless GPU cluster and callable with any of the Banana SDKs:
+
+- [Python](https://github.com/bananaml/banana-python-sdk)
+- [Node JS / Typescript](https://github.com/bananaml/banana-node-sdk)
+- [Go](https://github.com/bananaml/banana-go)
+
+You can monitor buildtime and runtime logs by clicking the logs button in the model view on the [Banana Dashboard](https://app.banana.dev)
+
+# Demo Integration:
+
+*Instructions on how to integrate the model server with the [demo](https://github.com/snipaid-nlg/demo) frontend are coming soon...*
