@@ -1,9 +1,11 @@
-FROM pytorch/pytorch:1.13.1-cuda11.6-cudnn8-devel
-
+FROM pytorch/pytorch:1.11.0-cuda11.3-cudnn8-runtime
 WORKDIR /
 
 # Install git
 RUN apt-get update && apt-get install -y git
+
+# Check cuda version
+RUN nvcc --version
 
 # Install python packages
 RUN pip3 install --upgrade pip
