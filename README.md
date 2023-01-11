@@ -25,7 +25,7 @@ if deploying using Docker:
 
 This repo provides you with a functioning http server for our finetuned gptj-title-teaser-10k model. You can use it as is, or package it up with our provided `Dockerfile` and deploy it to your favorite container hosting provider!
 
-We are currently running this code on [Banana](https://banana.dev), where you can get 1 hour of model hosting for free. Feel free to chose a different hosting provider. In the following section we provide instructions for deployment with Banana.
+We are currently running this code on [Banana](https://banana.dev), where you can get 1 hour of model hosting for free. Feel free to choose a different hosting provider. In the following section we provide instructions for deployment with Banana.
 
 # 🍌
 
