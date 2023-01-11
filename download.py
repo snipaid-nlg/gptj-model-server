@@ -9,7 +9,7 @@ import torch
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
     print("downloading model checkpoint...")
-    torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-10k.pt')
+    torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-10k.pt', map_location=torch.device('cpu'))
     print("done")
 
     print("downloading model config...")
