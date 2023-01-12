@@ -1,11 +1,18 @@
 
 # Running our finetuned model gpt-j-title-teaser-10k
 
-This repo gives a basic framework for serving ML models in production using simple HTTP servers.
+This repo provides the code for serving our finetuned gptj-title-teaser-10k model in production using simple HTTP servers.
 
 ## Quickstart:
 
-The repo is already set up to run our finetuned gpt-j model gptj-title-teaser-10k for title and teaser generation.
+Curious to test our finetuned gpt-j model gptj-title-teaser-10k for title and teaser generation?
+
+You can check it out with docker:
+
+1. Run `docker build -t gptj-title-teaser-10k . && docker run -it gptj-title-teaser-10k` to build and run the docker container.
+
+Or you can check it out manually:
+
 1. Run `pip3 install -r requirements.txt` to download dependencies.
 2. Run `python3 server.py` to start the server.
 3. Run `python3 test.py` in a different terminal session to test against it.
@@ -14,7 +21,7 @@ The repo is already set up to run our finetuned gpt-j model gptj-title-teaser-10
 
 ## Overview:
 
-1. `app.py` contains the code to load and run your model for inference.
+1. `app.py` contains the code to load and run the model for inference.
 2. You can run a simple test with `test.py`!
 
 if deploying using Docker:
@@ -35,14 +42,20 @@ We are currently running this code on [Banana](https://banana.dev), where you ca
 - Log in to the [Banana App](https://app.banana.dev)
 - Select your forked repo for deploy
 
-It'll then be built from the dockerfile, optimized, then deployed on Banana Serverless GPU cluster and callable with any of the Banana SDKs:
+It'll then be built from the dockerfile, optimized, then deployed on Banana Serverless GPU cluster. \
+You can monitor buildtime and runtime logs by clicking the logs button in the model view on the [Banana Dashboard](https://app.banana.dev).
 
-- [Python](https://github.com/bananaml/banana-python-sdk)
-- [Node JS / Typescript](https://github.com/bananaml/banana-node-sdk)
-- [Go](https://github.com/bananaml/banana-go)
+## Demo Integration:
 
-You can monitor buildtime and runtime logs by clicking the logs button in the model view on the [Banana Dashboard](https://app.banana.dev)
+When build and optimization finished successfully you will find your credentials printed in the build logs.
 
-# Demo Integration:
+```
+Your model was updated and is now deployed!
+It is runnable with the same credentials:
 
-*Instructions on how to integrate the model server with the [demo](https://github.com/snipaid-nlg/demo) frontend are coming soon...*
+API_KEY=Your-Personal-Api-Key
+MODEL_KEY=Your-Personal-Model-Key
+```
+
+You need these keys to hook up the demo frontend with the model. \
+To setup the frontend follow the instructions at [demo](https://github.com/snipaid-nlg/demo).
