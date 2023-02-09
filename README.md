@@ -57,5 +57,5 @@ API_KEY=Your-Personal-Api-Key
 MODEL_KEY=Your-Personal-Model-Key
 ```
 
-You need these keys to hook up the demo frontend with the model.  
-To setup the frontend follow the instructions at [web-app](https://github.com/snipaid-nlg/web-app).
+You need these keys to hook up the web app with the model.  
+To setup the frontend follow the instructions in the [web-app](https://github.com/snipaid-nlg/web-app) repository.
