@@ -1,11 +1,11 @@
 
-# Running our finetuned model gpt-j-title-teaser-10k
+# Model Server
 
-This repo provides the code for serving our finetuned gptj-title-teaser-10k model in production using simple HTTP servers.
+This repo provides the code for serving our finetuned gptj-title-teaser-10k model in production using a simple HTTP server.
 
 ## Quickstart:
 
-Curious to test our finetuned gpt-j model gptj-title-teaser-10k for title and teaser generation?
+Curious to get your hand on our finetuned gpt-j model for title and teaser generation?
 
 You can check it out with docker:
 
@@ -17,7 +17,7 @@ Or you can check it out manually:
 2. Run `python3 server.py` to start the server.
 3. Run `python3 test.py` in a different terminal session to test against it.
 
-*Note: Model should be run on a GPU!*
+*Note: Model requires a GPU with ~ 12GB memory for generation!*
 
 ## Overview:
 
@@ -42,7 +42,7 @@ We are currently running this code on [Banana](https://banana.dev), where you ca
 - Log in to the [Banana App](https://app.banana.dev)
 - Select your forked repo for deploy
 
-It'll then be built from the dockerfile, optimized, then deployed on Banana Serverless GPU cluster. \
+It'll then be built from the dockerfile, optimized, then deployed on Banana Serverless GPU cluster.  
 You can monitor buildtime and runtime logs by clicking the logs button in the model view on the [Banana Dashboard](https://app.banana.dev).
 
 ## Demo Integration:
@@ -57,5 +57,5 @@ API_KEY=Your-Personal-Api-Key
 MODEL_KEY=Your-Personal-Model-Key
 ```
 
-You need these keys to hook up the demo frontend with the model. \
-To setup the frontend follow the instructions at [demo](https://github.com/snipaid-nlg/demo).
+You need these keys to hook up the demo frontend with the model.  
+To setup the frontend follow the instructions at [web-app](https://github.com/snipaid-nlg/web-app).
