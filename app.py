@@ -22,7 +22,7 @@ def init():
     add_adapters(model)
 
     print("loading model to CPU...")
-    checkpoint = torch.hub.load_state_dict_from_url('https://h2858852.stratoserver.net/snipaid/gptj-title-teaser-10k.pt', map_location=torch.device('cpu'))
+    checkpoint = torch.hub.load_state_dict_from_url('https://huggingface.co/snipaid/gptj-title-teaser-10k/resolve/main/pytorch_model.pt', map_location=torch.device('cpu'))
     model.load_state_dict(checkpoint)
     print("done")
 
