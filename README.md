@@ -1,7 +1,9 @@
 
-# Model Server
+# GPTJ Model Server
 
 This repo provides the code for serving our finetuned gptj-title-teaser-10k model in production using a simple HTTP server.
+
+> _**NOTE:**_ There is an even faster server for this model, built with the Potassium framework, which you can find [here](https://github.com/snipaid-nlg/gptj-model-server-v2).
 
 ## Quickstart:
 
